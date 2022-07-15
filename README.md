@@ -1,5 +1,7 @@
 # DTS Mini Project
 
+DTS Mini Project - Pair 41 - Aldy Rizky Putra - Desi Siti Maryam  
+
 Ketentuan lengkap bisa dilihat di [Mini Project Guidelines](https://docs.google.com/document/d/1DzBNYJMhruoOQK0NOqiW3_UZ1JrA285K53PzHLNf9mc/edit?usp=sharing).
 
 ## Fork and Clone
