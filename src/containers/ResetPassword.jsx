@@ -5,25 +5,24 @@ import { signInWithEmailAndPassword, sendPasswordResetEmail } from 'firebase/aut
 import { auth } from '../config/firebase';
 
 
-const Login = () => {
+const ResetPassword = () => {
   const navigate = useNavigate();
   const [errorMessage, setErrorMessage] = useState('');
   
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
     const data = new FormData(e.currentTarget);
     const email = data.get('email');
-    const password = data.get('password');
-    
-    try {
-      await signInWithEmailAndPassword(auth, email, password);
-      navigate("/");
-    } catch (error) {
-      setErrorMessage(error.message);
-    }
+    sendPasswordResetEmail(auth, email)
+      .then(() => {
+        console.log("Email Send");
+      })
+      .catch((error) => {
+        setErrorMessage(error.message);
+      })
   }
   
-    return (
+      return (
         <>
         <div className='w-full h-screen'>
             <img
@@ -36,7 +35,7 @@ const Login = () => {
                 <div className='max-w-[320px] mx-auto py-16'>
                 <div className='justify-center'>
                     <Link to="/"><img src={logo} className="w-full h-20 object-contain" alt="logo" /></Link>
-                    <h1 className='mt-4 mb-4 text-center'>Sign In to your account</h1>
+                    <h1 className='mt-4 mb-4 text-center'>Reset your Password</h1>
                 </div>
                 <form
                     onSubmit={handleSubmit}
@@ -50,20 +49,10 @@ const Login = () => {
                     autoComplete='email'
                     name='email'
                     />
-                    <input
-                    //   onChange={(e) => setPassword(e.target.value)}
-                    className='p-3 my-2 bg-black border focus:border-red-600 focus:ring-red-600 focus:outline-none focus:ring focus:ring-opacity-40'
-                    type='password'
-                    placeholder='Password'
-                    autoComplete='current-password'
-                    name='password'
-                    />
                     <p className='text-xs text-red-400 text-center'>{errorMessage}</p>
                     <button className='bg-red-600 py-3 my-3 font-bold'>
-                    Sign In
+                    Reset Password
                     </button>
-                    <div className='mt-2 text-xs'>Dont have an account? <Link to="/signup">Sign Up</Link></div>
-                    <div className='mt-2 text-xs'>Forget Something? <Link to="/reset-password">Reset Password</Link></div>
                 </form>
                 </div>
             </div>
@@ -73,4 +62,4 @@ const Login = () => {
     )
 }
 
-export default Login
+export default ResetPassword

@@ -7,6 +7,7 @@ import Register from './containers/Register.jsx';
 import Profile from './containers/Profile.jsx';
 import Detail from './containers/Detail.jsx';
 import Watch from './containers/Watch.jsx';
+import ResetPassword from './containers/ResetPassword';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import ProtectedRoute from './components/ProtectedRoute';
@@ -29,6 +30,11 @@ root.render(
         <Route path="/signup" element={
           <ProtectedRoute loginOnly={false}>
             <Register />
+          </ProtectedRoute>
+        }/>
+        <Route path="/reset-password" element={
+          <ProtectedRoute loginOnly={false}>
+            <ResetPassword />
           </ProtectedRoute>
         }/>
         <Route path="/profile-selection" element={<Profile />} />
