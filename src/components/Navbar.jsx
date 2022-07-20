@@ -5,8 +5,10 @@ import { BiSearch, BiGift, BiBell, BiMenu } from 'react-icons/bi';
 import { Icon } from '@iconify-icon/react';
 import { auth } from '../config/firebase';
 import { signOut } from 'firebase/auth';
+import { useAuthState } from 'react-firebase-hooks/auth';
 
 const Navbar = () => {
+  const [user] = useAuthState(auth);
   const navigate = useNavigate();
   const [navbarOpen, setNavbarOpen] = useState(false)
   
@@ -83,11 +85,11 @@ const Navbar = () => {
                 <div className='flex text-right'>
                     <Link to="/profile-selection"><button className='p-2 mr-3'>Sign In</button></Link>
                     <Link to="/signup"><button className='border border-red-600 bg-red-600 p-2'>Sign Up</button></Link>
-                    <Icon icon='ic:round-logout' className='text-3xl ml-5 text-center block' onClick={onLogout} />
                     {/* AFTER LOGIN */}
-                    {/* <BiSearch className='mt-1 mr-3'></BiSearch>
-                    <p className='text-md mr-3'>Mini</p>
-                    <BiGift className='mt-1 mr-3'></BiGift>
+                    {/* <BiSearch className='mt-1 mr-3'></BiSearch> */}
+                    <p className='text-md mr-3'>{user.email}</p>
+                    <Icon icon='ic:round-logout' className='text-3xl ml-5 text-center block' onClick={onLogout} />
+                    {/* <BiGift className='mt-1 mr-3'></BiGift>
                     <BiBell className='mt-1 mr-3'></BiBell> */}
                 </div>
             </div>
