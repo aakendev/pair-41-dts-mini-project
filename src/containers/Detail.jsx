@@ -23,7 +23,7 @@ const Detail = () => {
                 if (result.data.backdrops.length > 10) {
                     back_url = result.data.backdrops[10].file_path
                 } else {
-                    back_url = result.data.backdrops[2].file_path
+                    back_url = result.data.backdrops[0].file_path
                 }
                 console.log(res.data)
                 setMovie(
