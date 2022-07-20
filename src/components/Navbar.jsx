@@ -22,77 +22,93 @@ const Navbar = () => {
   
   return (
         <>
-            <div className='flex items-center justify-between p-4 pl-10 z-{100} w-full sticky text-white'>
-                <img src={logo} alt="" className='w-10'></img>
-                <button
-                    className="text-white cursor-pointer text-xl leading-none px-3 py-1 border border-solid border-transparent rounded bg-transparent block lg:hidden outline-none focus:outline-none"
-                    type="button"
-                    onClick={() => setNavbarOpen(!navbarOpen)}
-                    >
-                    <BiMenu className="ml-3"></BiMenu>
-                </button>
-                <div
-                    className={
-                    "lg:flex flex-grow items-center w-[80%]" +
-                    (navbarOpen ? " flex" : " hidden")
-                    }
-                    id="example-navbar-danger"
-                >
-                    <ul className={'flex flex-col lg:flex-row list-none lg:ml-auto flex-wrap '+(navbarOpen === true ? 'top-20 left-0 absolute bg-gray-600': 'mt-0 w-full')}>
-                        <li className='nav-item'>
-                            <a
-                                className="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-white hover:opacity-75"
-                                href="#pablo"
-                            >
-                                <span className="ml-2">Home</span>
-                            </a>
+            <nav className='bg-black text-white'>
+                <div className='flex items-center font-medium justify-arround'>
+                    <div className="z-50 p-5 w-full flex justify-between">
+                        <img src={logo} alt="logo" className='h-10 ml-5 md:cursor-pointer' />
+                        <div className="text-3xl md:hidden float-left" onClick={() => setNavbarOpen(!navbarOpen)}>
+                            <BiMenu className='mt-1'></BiMenu>
+                        </div>
+                        <ul className="md:flex hidden uppercase items-center gap-8 text-sm">
+                            <li>
+                                <Link to="/" className='px-3 inline-block'>
+                                    Home
+                                </Link>
+                            </li>
+                            <li>
+                                <Link to="/" className='px-3 inline-block'>
+                                    Series
+                                </Link>
+                            </li>
+                            <li>
+                                <Link to="/" className='px-3 inline-block'>
+                                    Movies
+                                </Link>
+                            </li>
+                            <li>
+                                <Link to="/" className='px-3 inline-block'>
+                                    New and Popular
+                                </Link>
+                            </li>
+                            <li>
+                                <Link to="/" className='px-3 inline-block'>
+                                    My List
+                                </Link>
+                            </li>
+                        </ul>
+                        <div>
+                            {user !== null ? (
+                                <div className='flex text-right'>
+                                    <BiSearch className='mt-3 mr-3'></BiSearch>
+                                    <p className='text-md mr-3 mt-2'>{user?.email}</p>
+                                    <BiGift className='mt-3 mr-3'></BiGift>
+                                    <BiBell className='mt-3 mr-3'></BiBell>
+                    <               Icon icon='ic:round-logout' className='text-xl mt-3 cursor-pointer text-center block' onClick={onLogout} />
+                                </div>
+                            ) : (
+                                <div className='flex text-right'>
+                                    <Link to="/profile-selection"><button className='p-2 mr-3'>Sign In</button></Link>
+                                    <Link to="/signup"><button className='border border-red-600 bg-red-600 p-2'>Sign Up</button></Link>
+                                </div>
+                            ) }
+                        </div>
+                    </div>
+                    
+                    {/* Mobile nav */}
+                    <ul
+                        className={`
+                        md:hidden bg-black fixed w-[50%] h-[10rem] top-20 overflow-y-auto bottom-0 py-0 pl-4
+                        duration-500 ${navbarOpen ? "left-0" : "left-[-100%]"}
+                        `}
+                        >
+                        <li>
+                            <Link to="/" className="px-3 inline-block">
+                                Home
+                            </Link>
                         </li>
-                        <li className='nav-item'>
-                            <a
-                                className="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-white hover:opacity-75"
-                                href="#pablo"
-                            >
-                                <span className="ml-2">Series</span>
-                            </a>
+                        <li>
+                            <Link to="/" className="px-3 inline-block">
+                                Series
+                            </Link>
                         </li>
-                        <li className='nav-item'>
-                            <a
-                                className="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-white hover:opacity-75"
-                                href="#pablo"
-                            >
-                                <span className="ml-2">Movies</span>
-                            </a>
+                        <li>
+                            <Link to="/" className="px-3 inline-block">
+                                Movies
+                            </Link>
                         </li>
-                        <li className='nav-item'>
-                            <a
-                                className="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-white hover:opacity-75"
-                                href="#pablo"
-                            >
-                                <span className="ml-2">New and Popular</span>
-                            </a>
+                        <li>
+                            <Link to="/" className="px-3 inline-block">
+                                New and Popular
+                            </Link>
                         </li>
-                        <li className='nav-item'>
-                            <a
-                                className="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-white hover:opacity-75"
-                                href="#pablo"
-                            >
-                                <span className="ml-2">My List</span>
-                            </a>
+                        <li>
+                            <Link to="/" className="px-3 inline-block">
+                                My List
+                            </Link>
                         </li>
                     </ul>
-
                 </div>
-                <div className='flex text-right'>
-                    <Link to="/signin"><button className='p-2 mr-3'>Sign In</button></Link>
-                    <Link to="/signup"><button className='border border-red-600 bg-red-600 p-2'>Sign Up</button></Link>
-                    {/* AFTER LOGIN */}
-                    {/* <BiSearch className='mt-1 mr-3'></BiSearch> */}
-                    <p className='text-md mr-3'>{user?.email}</p>
-                    <Icon icon='ic:round-logout' className='text-3xl ml-5 text-center block' onClick={onLogout} />
-                    {/* <BiGift className='mt-1 mr-3'></BiGift>
-                    <BiBell className='mt-1 mr-3'></BiBell> */}
-                </div>
-            </div>
+            </nav>
       </>
     )
 }
