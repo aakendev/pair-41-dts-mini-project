@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import logo from '../assets/images/logo.png';
 import { createUserWithEmailAndPassword, getAuth } from 'firebase/auth';
 import { Link, useNavigate } from 'react-router-dom';
-import { auth } from '../config/firebase.jsx';
+import { auth } from '../config/firebase';
 
 const Register = () => {
     const navigate = useNavigate();

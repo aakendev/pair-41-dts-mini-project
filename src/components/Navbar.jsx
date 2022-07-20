@@ -1,11 +1,24 @@
 import React, { useState } from 'react';
 import logo from '../assets/images/logo.png';
-import { Link } from 'react-router-dom';
-import { /*BiSearch, BiGift, BiBell,*/ BiMenu } from 'react-icons/bi'
+import { Link, useNavigate } from 'react-router-dom';
+import { BiSearch, BiGift, BiBell, BiMenu } from 'react-icons/bi';
+import { Icon } from '@iconify-icon/react';
+import { auth } from '../config/firebase';
+import { signOut } from 'firebase/auth';
 
 const Navbar = () => {
-    const [navbarOpen, setNavbarOpen] = useState(false)
-    return (
+  const navigate = useNavigate();
+  const [navbarOpen, setNavbarOpen] = useState(false)
+  
+  const onLogout = () => {
+    signOut(auth).then(() => {
+      navigate('/signin');
+    }).catch((error) => {
+      console.log(error)
+    });
+  }
+  
+  return (
         <>
             <div className='flex items-center justify-between p-4 pl-10 z-{100} w-full sticky text-white'>
                 <img src={logo} alt="" className='w-10'></img>
@@ -70,6 +83,7 @@ const Navbar = () => {
                 <div className='flex text-right'>
                     <Link to="/profile-selection"><button className='p-2 mr-3'>Sign In</button></Link>
                     <Link to="/signup"><button className='border border-red-600 bg-red-600 p-2'>Sign Up</button></Link>
+                    <Icon icon='ic:round-logout' className='text-3xl ml-5 text-center block' onClick={onLogout} />
                     {/* AFTER LOGIN */}
                     {/* <BiSearch className='mt-1 mr-3'></BiSearch>
                     <p className='text-md mr-3'>Mini</p>
