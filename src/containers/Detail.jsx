@@ -1,10 +1,10 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { BiPlay, BiInfoCircle } from 'react-icons/bi'
-import Navbar from './Navbar';
+import Navbar from '../components/Navbar';
 import { useParams, Link } from 'react-router-dom';
-import Footer from './Footer';
-import Categories from './Categories';
+import Footer from '../components/Footer';
+import Categories from '../components/Categories';
 
 const api_url = process.env.REACT_APP_API_IMDB;
 const key = process.env.REACT_APP_KEY_IMDB;

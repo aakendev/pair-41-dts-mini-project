@@ -1,15 +1,15 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
-import Navbar from './Navbar';
-import Main from './Main';
-import Footer from './Footer';
-import Categories from './Categories';
-import TopRated from './TopRated';
+import Navbar from './components/Navbar';
+import Main from './components/Main';
+import Footer from './components/Footer';
+import Categories from './components/Categories';
+import TopRated from './components/TopRated';
 
 const api_url = process.env.REACT_APP_API_IMDB;
 const key = process.env.REACT_APP_KEY_IMDB;
 
-const Home = () => {
+const App = () => {
     const [main, setMain] = useState([]);
 
     const getMovieById = (data) => {
@@ -53,4 +53,4 @@ const Home = () => {
     )
 }
 
-export default Home
+export default App;

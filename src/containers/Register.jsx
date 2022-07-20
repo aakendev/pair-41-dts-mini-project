@@ -1,8 +1,27 @@
-import React from 'react';
+import React, { useState } from 'react';
 import logo from '../assets/images/logo.png';
-import { Link } from 'react-router-dom';
+import { createUserWithEmailAndPassword, getAuth } from 'firebase/auth';
+import { Link, useNavigate } from 'react-router-dom';
+import { auth } from '../config/firebase.jsx';
 
 const Register = () => {
+    const navigate = useNavigate();
+    const [errorMessage, setErrorMessage] = useState('');
+  
+    const handleSubmit = async (e) => {
+      e.preventDefault();
+      const data = new FormData(e.currentTarget);
+      const email = data.get('email');
+      const password = data.get('password');
+      
+      try {
+      const { user } = await createUserWithEmailAndPassword(auth, email, password);
+        console.log(user);
+        navigate("/");
+      } catch (error) {
+          setErrorMessage(error.message);
+      }
+    };
     return (
         <>
         <div className='w-full h-screen'>
@@ -19,7 +38,7 @@ const Register = () => {
                     <h1 className='mt-4 mb-4 text-center'>Sign Up to new account</h1>
                 </div>
                 <form
-                    // onSubmit={handleSubmit}
+                    onSubmit={handleSubmit}
                     className='w-full flex flex-col py-4'
                 >
                     <input
@@ -28,6 +47,7 @@ const Register = () => {
                     type='email'
                     placeholder='Email'
                     autoComplete='email'
+                    name='email'
                     />
                     <input
                     //   onChange={(e) => setPassword(e.target.value)}
@@ -35,7 +55,9 @@ const Register = () => {
                     type='password'
                     placeholder='Password'
                     autoComplete='current-password'
+                    name='password'
                     />
+                    <p className='text-xs text-red-400 text-center'>{errorMessage}</p>
                     <button className='bg-red-600 py-3 my-2 font-bold'>
                     Sign Up
                     </button>
@@ -49,4 +71,4 @@ const Register = () => {
     )
 }
 
-export default Register
+export default Register;
