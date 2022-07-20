@@ -3,7 +3,7 @@ import React from 'react';
 const Footer = () => {
     return (
         <div className='w-full aligns-item justify-between text-gray-300 '>
-            <ul className='text-xs p-5 flex flex-wrap w-full aligns-center justify-between'>
+            <ul className='text-xs p-5 flex flex-wrap w-full aligns-center md:justify-between'>
                 <li className='ml-5 mt-3'>
                     <p className='mb-1'>Audio and Subtitles</p>
                     <p className='mb-1'>Media Center</p>

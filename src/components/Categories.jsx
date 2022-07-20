@@ -32,7 +32,7 @@ const Categories = ({id, getUrl, title, getImage}) => {
 
     return (
         <>
-            <h1 className='text-white pl-10 pt-5 text-xl mb-3'>{title}</h1>
+            <h1 className='text-white p-5 md:pl-10 pt-5 text-xl mb-3'>{title}</h1>
             <div className='relative flex items-center group'>
                 <MdChevronLeft 
                     onClick={slideLeft}

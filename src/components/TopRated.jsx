@@ -14,7 +14,7 @@ const TopRated = ({id, getUrl, title}) => {
         const getAPI = () => {
             const apiUrl = api_url + getUrl +'?api_key='+key
             axios.get(apiUrl).then(response => {
-                setMovies(response.data.results)
+                setMovies(response.data.results.slice(0, 10))
             })
         }
         getAPI()
@@ -46,11 +46,11 @@ const TopRated = ({id, getUrl, title}) => {
                                 <div className='w-[160px] sm:w-[200px] md:w-[240px] lg:w-[280px] inline-block cursor-pointer relative p-2' key={index}>
                                     <div className='flex'>
                                         <img src={requestImage[index]}
-                                            className="ml-5" 
+                                            className="ml-5 w-[40%] md:w-[30%] mt-2 md:mt-0 h-[5rem] md:h-[10rem]" 
                                             alt={requestImage[index]}
                                         />
                                         <img
-                                            className='w-[50%]'
+                                            className='absolute h-[5rem] mt-2 md:mt-0 pl-[5rem] md:pl-[6rem] md:h-[10rem]'
                                             src={`https://image.tmdb.org/t/p/w500/${item?.poster_path}`}
                                             alt={item?.title}
                                         />

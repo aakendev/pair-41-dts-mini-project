@@ -16,16 +16,20 @@ const App = () => {
         const all_data = [];
         data.forEach(item => {
             const apiUrl = api_url + item.id +'?api_key='+key;
+            const urlImg = api_url + item.id +'/images?api_key='+key+'&language=en-US&include_image_language=en,null';
             axios.get(apiUrl).then(res => {
-                all_data.push({
-                    backdrop_path: res.data.backdrop_path,
-                    genres: res.data.genres[0],
-                    title: res.data.title,
-                    tagline: res.data.tagline,
-                    overview: res.data.overview,
-                    id: res.data.id
+                axios.get(urlImg).then(result => {
+                    all_data.push({
+                        backdrop_path: res.data.backdrop_path,
+                        genres: res.data.genres[0],
+                        title: res.data.title,
+                        tagline: res.data.tagline,
+                        overview: res.data.overview,
+                        id: res.data.id,
+                        logo: result.data.logos[0].file_path
+                    })
+                    setMain(all_data.slice(0,5))
                 })
-                setMain(all_data.slice(0,5))
             })  
         })
     }
