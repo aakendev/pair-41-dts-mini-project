@@ -77,7 +77,7 @@ const Navbar = () => {
                     {/* Mobile nav */}
                     <ul
                         className={`
-                        md:hidden bg-black fixed w-[50%] h-[10rem] top-20 overflow-y-auto bottom-0 py-0 pl-4
+                        md:hidden bg-black fixed w-[50%] h-[10rem] top-20 overflow-y-auto bottom-0 py-3 pl-4 z-10
                         duration-500 ${navbarOpen ? "left-0" : "left-[-100%]"}
                         `}
                         >

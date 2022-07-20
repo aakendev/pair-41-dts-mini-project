@@ -12,7 +12,7 @@ const Main = ({movie}) => {
                             <div className='w-screen inline-block cursor-pointer relative' key={index}>
                                 <Link to={`/detail-movie/${item.id}`}>
                                     <div className='w-full relative'>
-                                        <div className='w-full absolute md:w-[50%] items-center text-white p-5 md:p-10 md:ml-5 md:mt-[1rem] z-10'>
+                                        <div className='w-full absolute md:w-[50%] items-center text-white p-5 md:p-10 md:ml-5 md:mt-[1rem]'>
                                             <img src={`https://image.tmdb.org/t/p/original/${item?.logo}`} alt={item?.title} className="w-[50%] md:w-[70%] mb-2" />
                                             <p className="text-gray-400 mb-2 text-xs md:text-md">{item?.tagline}</p>
                                             <p className='whitespace-normal text-xs md:text-lg'>{item?.overview.substring(0,250)}</p>
