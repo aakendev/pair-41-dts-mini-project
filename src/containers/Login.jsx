@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import logo from '../assets/images/logo.png';
 import { Link, useNavigate } from 'react-router-dom';
-import { signInWithEmailAndPassword } from 'firebase/auth';
+import { signInWithEmailAndPassword, sendPasswordResetEmail } from 'firebase/auth';
 import { auth } from '../config/firebase';
 
 
@@ -21,6 +21,16 @@ const Login = () => {
     } catch (error) {
       setErrorMessage(error.message);
     }
+  }
+  
+  const resetPassword = () => {
+    sendPasswordResetEmail(auth, "aakendev@gmail.com")
+      .then(() => {
+        console.log("Email Send");
+      })
+      .catch((error) => {
+        setErrorMessage(error.message);
+      })
   }
     return (
         <>
@@ -62,6 +72,7 @@ const Login = () => {
                     Sign In
                     </button>
                     <div className='mt-2 text-xs'>Dont have an account? <Link to="/signup">Sign Up</Link></div>
+                    <div className='mt-2 text-xs'>Forget Something? <Link to="#" onClick={resetPassword}>Reset Password</Link></div>
                 </form>
                 </div>
             </div>
