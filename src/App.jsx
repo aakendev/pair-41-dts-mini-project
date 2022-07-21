@@ -53,7 +53,7 @@ const App = () => {
             <Categories id="1" getUrl="popular" title="Tv Series" getImage="back" type="tv" />
             <Categories id="2" getUrl="upcoming" title="Upcoming" getImage="poster" type="movie" />
             <Categories id="2" getUrl="on_the_air" title="On Going" getImage="poster" type="tv" />
-            <TopRated id="3" getUrl="top_rated" title="Top Rated" type="movie/" />
+            <TopRated id="3" getUrl="top_rated" title="Top Rated" type="movie" />
             <Footer />
       </>
     )
