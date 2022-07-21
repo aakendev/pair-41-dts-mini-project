@@ -37,7 +37,7 @@ const Movies = () => {
     
     useEffect(() => {
         const getAPI = () => {
-            const apiUrl = api_url+'movie/'+'popular?api_key='+key
+            const apiUrl = api_url+'movie/popular?api_key='+key
             axios.get(apiUrl).then(response => {
                 getMovieById(response.data.results.slice(0,5));
             })
