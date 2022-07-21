@@ -67,7 +67,7 @@ const Navbar = () => {
                                 </div>
                             ) : (
                                 <div className='flex text-right'>
-                                    <Link to="/profile-selection"><button className='p-2 mr-3 hover:text-gray-600'>Sign In</button></Link>
+                                    <Link to="/signin"><button className='p-2 mr-3 hover:text-gray-600'>Sign In</button></Link>
                                     <Link to="/signup"><button className='border border-red-600 bg-red-600 p-2 hover:text-gray-600'>Sign Up</button></Link>
                                 </div>
                             ) }
