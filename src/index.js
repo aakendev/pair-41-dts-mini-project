@@ -8,6 +8,7 @@ import Profile from "./containers/Profile.jsx";
 import Detail from "./containers/Detail.jsx";
 import Watch from "./containers/Watch.jsx";
 import ResetPassword from "./containers/ResetPassword";
+import NotFound from "./containers/NotFound";
 import reportWebVitals from "./reportWebVitals";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import ProtectedRoute from "./components/ProtectedRoute";
@@ -66,6 +67,7 @@ root.render(
             </ProtectedRoute>
           }
         />
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </BrowserRouter>
   </React.StrictMode>
