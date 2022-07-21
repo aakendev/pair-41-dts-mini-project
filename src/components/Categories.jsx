@@ -6,13 +6,13 @@ import { Link } from 'react-router-dom';
 const api_url = process.env.REACT_APP_API_IMDB;
 const key = process.env.REACT_APP_KEY_IMDB;
 
-const Categories = ({id, getUrl, title, getImage}) => {
+const Categories = ({id, getUrl, title, getImage, type}) => {
     const [movies, setMovies] = useState([]);
 
     
     useEffect(() => {
         const getAPI = () => {
-            const apiUrl = api_url+getUrl+'?api_key='+key
+            const apiUrl = api_url+type+'/'+getUrl+'?api_key='+key
             axios.get(apiUrl).then(response => {
                 setMovies(response.data.results)
             })
@@ -42,7 +42,7 @@ const Categories = ({id, getUrl, title, getImage}) => {
                 <div id={"slider"+id} className='w-full h-full overflow-x-scroll whitespace-nowrap scroll-smooth scrollbar-hide relative'>
                     {movies.map((item, index) => (
                         <div className='w-[160px] sm:w-[200px] md:w-[240px] lg:w-[280px] inline-block cursor-pointer relative p-2' key={index}>
-                            <Link to={`/detail-movie/${item?.id}`}>
+                            <Link to={`/detail/${type}/${item.id}`}>
                                 {getImage === 'back' ? (
                                     <img
                                         className='w-full h-auto block'
@@ -58,7 +58,7 @@ const Categories = ({id, getUrl, title, getImage}) => {
                                 )}
                                 <div className='absolute top-0 left-0 w-full h-full hover:bg-black/80 opacity-0 hover:opacity-100 text-white'>
                                     <p className='white-space-normal text-xs font-bold flex justify-center items-center h-full text-center'>
-                                    {item?.title}
+                                    {item?.title ? item?.title : item?.name}
                                     </p>
                                 </div>
                             </Link>

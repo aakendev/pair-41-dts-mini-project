@@ -1,15 +1,15 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
-import Navbar from './components/Navbar';
-import Main from './components/Main';
-import Footer from './components/Footer';
-import Categories from './components/Categories';
-import TopRated from './components/TopRated';
+import Navbar from '../components/Navbar';
+import Main from '../components/Main';
+import Footer from '../components/Footer';
+import Categories from '../components/Categories';
+import TopRated from '../components/TopRated';
 
 const api_url = process.env.REACT_APP_API_IMDB;
 const key = process.env.REACT_APP_KEY_IMDB;
 
-const App = () => {
+const Movies = () => {
     const [main, setMain] = useState([]);
 
     const getMovieById = (data) => {
@@ -48,15 +48,13 @@ const App = () => {
     return (
         <>
             <Navbar />
-            <Main movie={main} type="movie" />
+            <Main movie={main} />
             <Categories id="1" getUrl="popular" title="Popular" getImage="back" type="movie" />
-            <Categories id="1" getUrl="popular" title="Tv Series" getImage="back" type="tv" />
-            <Categories id="2" getUrl="upcoming" title="Upcoming" getImage="poster" type="movie" />
-            <Categories id="2" getUrl="on_the_air" title="On Going" getImage="poster" type="tv" />
-            <TopRated id="3" getUrl="top_rated" title="Top Rated" type="movie/" />
+            <Categories id="2" getUrl="upcoming" title="Up Coming" getImage="poster" type="movie" />
+            <TopRated id="3" getUrl="top_rated" title="Top Rated" type="movie" />
             <Footer />
       </>
     )
 }
 
-export default App;
+export default Movies;

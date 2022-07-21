@@ -7,12 +7,12 @@ import requestImage from '../assets/js/getImage';
 const api_url = process.env.REACT_APP_API_IMDB;
 const key = process.env.REACT_APP_KEY_IMDB;
 
-const TopRated = ({id, getUrl, title}) => {
+const TopRated = ({id, getUrl, title, type}) => {
     const [movies, setMovies] = useState([]);
     
     useEffect(() => {
         const getAPI = () => {
-            const apiUrl = api_url + getUrl +'?api_key='+key
+            const apiUrl = api_url+type+'/'+ getUrl +'?api_key='+key
             axios.get(apiUrl).then(response => {
                 setMovies(response.data.results.slice(0, 10))
             })
@@ -42,7 +42,7 @@ const TopRated = ({id, getUrl, title}) => {
                 <div id={"slider"+id} className='w-full h-full overflow-x-scroll whitespace-nowrap scroll-smooth scrollbar-hide relative'>
                     {movies.map((item, index) => (
                         <div className='w-[160px] sm:w-[200px] md:w-[240px] lg:w-[280px] inline-block cursor-pointer relative p-2' key={index}>
-                            <Link to={`/detail-movie/${item?.id}`}>
+                            <Link to={`/detail/${type}/${item?.id}`}>
                                 <div className='w-[160px] sm:w-[200px] md:w-[240px] lg:w-[280px] inline-block cursor-pointer relative p-2' key={index}>
                                     <div className='flex'>
                                         <img src={requestImage[index]}

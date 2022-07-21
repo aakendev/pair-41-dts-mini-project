@@ -7,14 +7,14 @@ const key = process.env.REACT_APP_KEY_IMDB;
 
 const Watch = () => {
     const [videos, setVideos] = useState()
-    const { id } = useParams()
+    const { jenis, id } = useParams()
     
     useEffect(() => {
-        const apiUrl = api_url + id +'/videos?api_key='+key;
+        const apiUrl = api_url+jenis+'/'+ id +'/videos?api_key='+key;
         axios.get(apiUrl).then(res => {
             setVideos(res.data.results[3])
         })
-    }, [id])
+    }, [jenis, id])
     
     return (
         <>

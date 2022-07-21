@@ -12,6 +12,10 @@ import NotFound from "./containers/NotFound";
 import reportWebVitals from "./reportWebVitals";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import ProtectedRoute from "./components/ProtectedRoute";
+import Series from "./containers/Series";
+import Movies from "./containers/Movies";
+import NewPopular from "./containers/NewPopular";
+import MyList from "./containers/MyList";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -51,18 +55,22 @@ root.render(
           }
         />
         <Route path="/profile-selection" element={<Profile />} />
+        <Route path="/tv-series" element={<Series />} />
+        <Route path="/movies" element={<Movies />} />
+        <Route path="/new-and-popular" element={<NewPopular />} />
+        <Route path="/my-list" element={<MyList />} />
         <Route
-          path="/detail-movie/:id"
+          path="/detail/:jenis/:id"
           element={
-            <ProtectedRoute loginOnly={false}>
+            <ProtectedRoute loginOnly={true}>
               <Detail />
             </ProtectedRoute>
           }
         />
         <Route
-          path="/watch-movie/:id"
+          path="/watch/:jenis/:id"
           element={
-            <ProtectedRoute loginOnly={false}>
+            <ProtectedRoute loginOnly={true}>
               <Watch />
             </ProtectedRoute>
           }

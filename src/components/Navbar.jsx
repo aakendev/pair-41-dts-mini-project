@@ -11,7 +11,7 @@ const Navbar = () => {
   const [user] = useAuthState(auth);
   const navigate = useNavigate();
   const [navbarOpen, setNavbarOpen] = useState(false)
-  
+
   const onLogout = () => {
     signOut(auth).then(() => {
       navigate('/signin');
@@ -31,27 +31,27 @@ const Navbar = () => {
                         </div>
                         <ul className="md:flex hidden uppercase items-center gap-8 text-sm">
                             <li>
-                                <Link to="/" className='px-3 inline-block'>
+                                <Link to="/" className='px-3 inline-block hover:text-gray-600'>
                                     Home
                                 </Link>
                             </li>
                             <li>
-                                <Link to="/" className='px-3 inline-block'>
+                                <Link to="/tv-series" className='px-3 inline-block hover:text-gray-600'>
                                     Series
                                 </Link>
                             </li>
                             <li>
-                                <Link to="/" className='px-3 inline-block'>
+                                <Link to="/movies" className='px-3 inline-block hover:text-gray-600'>
                                     Movies
                                 </Link>
                             </li>
                             <li>
-                                <Link to="/" className='px-3 inline-block'>
+                                <Link to="/new-and-popular" className='px-3 inline-block hover:text-gray-600'>
                                     New and Popular
                                 </Link>
                             </li>
                             <li>
-                                <Link to="/" className='px-3 inline-block'>
+                                <Link to="/my-list" className='px-3 inline-block hover:text-gray-600'>
                                     My List
                                 </Link>
                             </li>
@@ -59,16 +59,16 @@ const Navbar = () => {
                         <div>
                             {user !== null ? (
                                 <div className='flex text-right'>
-                                    <BiSearch className='mt-3 mr-3'></BiSearch>
+                                    <BiSearch className='mt-3 mr-3 hover:text-gray-600 cursor-pointer'></BiSearch>
                                     <p className='text-md mr-3 mt-2'>{user?.email}</p>
-                                    <BiGift className='mt-3 mr-3'></BiGift>
-                                    <BiBell className='mt-3 mr-3'></BiBell>
-                    <               Icon icon='ic:round-logout' className='text-xl mt-3 cursor-pointer text-center block' onClick={onLogout} />
+                                    <BiGift className='mt-3 mr-3 hover:text-gray-600 cursor-pointer'></BiGift>
+                                    <BiBell className='mt-3 mr-3 hover:text-gray-600 cursor-pointer'></BiBell>
+                    <               Icon icon='ic:round-logout' className='text-xl mt-3 cursor-pointer text-center block hover:text-gray-600' onClick={onLogout} />
                                 </div>
                             ) : (
                                 <div className='flex text-right'>
-                                    <Link to="/profile-selection"><button className='p-2 mr-3'>Sign In</button></Link>
-                                    <Link to="/signup"><button className='border border-red-600 bg-red-600 p-2'>Sign Up</button></Link>
+                                    <Link to="/profile-selection"><button className='p-2 mr-3 hover:text-gray-600'>Sign In</button></Link>
+                                    <Link to="/signup"><button className='border border-red-600 bg-red-600 p-2 hover:text-gray-600'>Sign Up</button></Link>
                                 </div>
                             ) }
                         </div>
@@ -82,27 +82,27 @@ const Navbar = () => {
                         `}
                         >
                         <li>
-                            <Link to="/" className="px-3 inline-block">
+                            <Link to="/" className="px-3 inline-block hover:text-gray-600">
                                 Home
                             </Link>
                         </li>
                         <li>
-                            <Link to="/" className="px-3 inline-block">
+                            <Link to="/tv-series" className="px-3 inline-block hover:text-gray-600">
                                 Series
                             </Link>
                         </li>
                         <li>
-                            <Link to="/" className="px-3 inline-block">
+                            <Link to="/movies" className="px-3 inline-block hover:text-gray-600">
                                 Movies
                             </Link>
                         </li>
                         <li>
-                            <Link to="/" className="px-3 inline-block">
+                            <Link to="/new-and-popular" className="px-3 inline-block hover:text-gray-600">
                                 New and Popular
                             </Link>
                         </li>
                         <li>
-                            <Link to="/" className="px-3 inline-block">
+                            <Link to="/my-list" className="px-3 inline-block hover:text-gray-600">
                                 My List
                             </Link>
                         </li>

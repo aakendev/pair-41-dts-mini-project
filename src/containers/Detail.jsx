@@ -11,12 +11,14 @@ const key = process.env.REACT_APP_KEY_IMDB;
 
 const Detail = () => {
     const [movie, setMovie] = useState()
+    const [url, setUrl] =useState('')
     const [showModal, setShowModal] = useState(false);
-    const { id } = useParams()
+    const [logo, setLogo] = useState([]);
+    const { jenis, id } = useParams()
     
     useEffect(() => {
-        const apiUrl = api_url + id +'?api_key='+key;
-        const urlImg = api_url + id +'/images?api_key='+key+'&language=en-US&include_image_language=en,null';
+        const apiUrl = api_url+jenis+'/'+ id +'?api_key='+key;
+        const urlImg = api_url+jenis+'/'+ id +'/images?api_key='+key+'&language=en-US&include_image_language=en,null';
         axios.get(apiUrl).then(res => {
             axios.get(urlImg).then(result => {
                 let back_url = '';
@@ -25,21 +27,21 @@ const Detail = () => {
                 } else {
                     back_url = result.data.backdrops[0].file_path
                 }
-                console.log(res.data)
+                setLogo(result.data.logos)
                 setMovie(
                     {
                         id: res.data.id,
                         backdrop_path: back_url,
-                        title: res.data.title,
+                        title: jenis === 'movie' ? res.data.title : res.data.name,
                         overview: res.data.overview,
-                        logo: result.data.logos[0].file_path,
+                        logo: result.data.logos.length > 0 ? result.data.logos[0].file_path : null,
                         tagline: res.data.tagline,
                         data: res.data
                     }
                 );
             })
         })
-    }, [id])
+    }, [jenis, id])
 
     return (
         <>
@@ -54,18 +56,20 @@ const Detail = () => {
                             alt={movie?.title}
                         />
                         <div className='absolute w-full top-[15%] md:top-[25%] p-2 md:p-8 text-white'>
-                            <img src={`https://image.tmdb.org/t/p/original/${movie?.logo}`} alt={movie?.title} className="w-[50%] md:w-[50%] mb-2" />
-                            {/* <h1 className="text-sm md:text-3xl mb-3 whitespace-normal">{movie?.title}</h1> */}
+                            {logo.length > 0 ? (
+                                <img src={`https://image.tmdb.org/t/p/original/${movie?.logo}`} alt={movie?.title} className="w-[50%] md:w-[50%] mb-2" />
+                            ) : (
+                                <h1 className="text-sm md:text-3xl mb-3 whitespace-normal">{movie?.title}</h1>
+                            )} 
                             <p className='w-[50%] text-xs md:text-sm text-gray-300'>{movie?.tagline}</p>
                             <div className='mt-5 flex'>
-                                <Link to={'/watch-movie/'+id} ><button className='bg-gray-100 text-black rounded-sm p-1 md:p-2 text-xs mr-3 px-2 md:px-5 flex'><BiPlay size={25} className="mr-3"></BiPlay> <span className='mt-1 text-xs text-bold'>Play</span></button></Link>
+                                <Link to={'/watch/'+jenis+'/'+id} ><button className='bg-gray-100 text-black rounded-sm p-1 md:p-2 text-xs mr-3 px-2 md:px-5 flex'><BiPlay size={25} className="mr-3"></BiPlay> <span className='mt-1 text-xs text-bold'>Play</span></button></Link>
                                 <button className='text-white border rounded-sm p-1 md:p-2 text-xs md:px-5 flex' onClick={() => setShowModal(true)}><BiInfoCircle size={25}></BiInfoCircle> <span className='mt-1 text-bold ml-3 text-xs'>More Information</span></button>
                             </div>
                         </div>
                     </div>
                 </div>
-                <Categories id="1" getUrl="popular" title="Popular" getImage="back" />
-                <Categories id="2" getUrl="upcoming" title="Upcoming" getImage="poster" />
+                <Categories id="1" getUrl="popular" title="Recommendations" getImage="back" type={jenis} />
                 {showModal ? (
                     <div className="flex justify-center items-center overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none">
                         <div className="relative my-6 max-w-3xl w-[75%] md:w-[100%] text-white">
