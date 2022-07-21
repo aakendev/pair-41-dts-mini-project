@@ -1,45 +1,71 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
-import Login from './containers/Login.jsx';
-import Register from './containers/Register.jsx';
-import Profile from './containers/Profile.jsx';
-import Detail from './containers/Detail.jsx';
-import Watch from './containers/Watch.jsx';
-import ResetPassword from './containers/ResetPassword';
-import reportWebVitals from './reportWebVitals';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import ProtectedRoute from './components/ProtectedRoute';
+import React from "react";
+import ReactDOM from "react-dom/client";
+import "./index.css";
+import App from "./App";
+import Login from "./containers/Login.jsx";
+import Register from "./containers/Register.jsx";
+import Profile from "./containers/Profile.jsx";
+import Detail from "./containers/Detail.jsx";
+import Watch from "./containers/Watch.jsx";
+import ResetPassword from "./containers/ResetPassword";
+import reportWebVitals from "./reportWebVitals";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import ProtectedRoute from "./components/ProtectedRoute";
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
+const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={
-          <ProtectedRoute>
-            <App />
-          </ProtectedRoute>
-        }/>
-        <Route path="/signin" element={
-          <ProtectedRoute loginOnly={false}>
-            <Login />
-          </ProtectedRoute>
-        }/>
-        <Route path="/signup" element={
-          <ProtectedRoute loginOnly={false}>
-            <Register />
-          </ProtectedRoute>
-        }/>
-        <Route path="/reset-password" element={
-          <ProtectedRoute loginOnly={false}>
-            <ResetPassword />
-          </ProtectedRoute>
-        }/>
+        <Route
+          path="/"
+          element={
+            <ProtectedRoute>
+              <App />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/signin"
+          element={
+            <ProtectedRoute loginOnly={false}>
+              <Login />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/signup"
+          element={
+            <ProtectedRoute loginOnly={false}>
+              <Register />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/reset-password"
+          element={
+            <ProtectedRoute loginOnly={false}>
+              <ResetPassword />
+            </ProtectedRoute>
+          }
+        />
         <Route path="/profile-selection" element={<Profile />} />
-        <Route path="/detail-movie/:id" element={<Detail />} />
-        <Route path="/watch-movie/:id" element={<Watch />} />
+        <Route
+          path="/detail-movie/:id"
+          element={
+            <ProtectedRoute loginOnly={false}>
+              <Detail />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/watch-movie/:id"
+          element={
+            <ProtectedRoute loginOnly={false}>
+              <Watch />
+            </ProtectedRoute>
+          }
+        />
       </Routes>
     </BrowserRouter>
   </React.StrictMode>
