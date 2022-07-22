@@ -68,15 +68,26 @@ const Login = () => {
                 <p className="text-xs text-red-400 text-center">
                   {errorMessage}
                 </p>
-                <button className="bg-red-600 py-3 my-3 font-bold">
+                <button className="bg-red-600 hover:bg-red-900 active:bg-red-900 py-3 my-3 font-bold">
                   Sign In
                 </button>
                 <div className="mt-2 text-xs">
-                  Dont have an account? <Link to="/signup">Sign Up</Link>
+                  Dont have an account?{" "}
+                  <Link
+                    className="hover:bg-red-600 active:bg-red-600"
+                    to="/signup"
+                  >
+                    Sign Up
+                  </Link>
                 </div>
                 <div className="mt-2 text-xs">
                   Forget Something?{" "}
-                  <Link to="/reset-password">Reset Password</Link>
+                  <Link
+                    className="hover:bg-red-600 active:bg-red-600"
+                    to="/reset-password"
+                  >
+                    Reset Password
+                  </Link>
                 </div>
               </form>
             </div>
