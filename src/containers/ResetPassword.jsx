@@ -57,7 +57,7 @@ const ResetPassword = () => {
                 <p className="text-xs text-red-400 text-center">
                   {errorMessage}
                 </p>
-                <button className="bg-red-600 hover:bg-red-300 active:bg-red-300 py-3 my-3 font-bold">
+                <button className="bg-red-600 hover:bg-red-700 active:bg-red-700 py-3 my-3 font-bold">
                   Reset Password
                 </button>
                 <div className="mt-2 text-xs">
