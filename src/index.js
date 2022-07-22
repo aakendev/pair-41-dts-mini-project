@@ -16,6 +16,7 @@ import Series from "./containers/Series";
 import Movies from "./containers/Movies";
 import NewPopular from "./containers/NewPopular";
 import MyList from "./containers/MyList";
+import Search from "./containers/Search";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -59,6 +60,7 @@ root.render(
         <Route path="/movies" element={<Movies />} />
         <Route path="/new-and-popular" element={<NewPopular />} />
         <Route path="/my-list" element={<MyList />} />
+        <Route path="/search/:value" element={<Search />} />
         <Route
           path="/detail/:jenis/:id"
           element={

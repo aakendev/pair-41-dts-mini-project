@@ -11,6 +11,18 @@ const Navbar = () => {
   const [user] = useAuthState(auth);
   const navigate = useNavigate();
   const [navbarOpen, setNavbarOpen] = useState(false)
+  const [search, setSearch] = useState(false)
+  const [value, setValue] = useState('');
+
+  const handleKey = (e) => {
+    if (e.key === "Enter") {
+        navigate('/search/'+value)
+    }
+  }
+
+  const handleChange = (e) => {
+    setValue(e.target.value)
+  }
 
   const onLogout = () => {
     signOut(auth).then(() => {
@@ -25,7 +37,7 @@ const Navbar = () => {
             <nav className='bg-black text-white'>
                 <div className='flex items-center font-medium justify-arround'>
                     <div className="z-50 p-5 w-full flex justify-between">
-                        <img src={logo} alt="logo" className='h-10 ml-5 md:cursor-pointer' />
+                        <img src={logo} alt="logo" className='h-10 md:ml-5 md:cursor-pointer' />
                         <div className="text-3xl md:hidden float-left" onClick={() => setNavbarOpen(!navbarOpen)}>
                             <BiMenu className='mt-1'></BiMenu>
                         </div>
@@ -59,8 +71,11 @@ const Navbar = () => {
                         <div>
                             {user !== null ? (
                                 <div className='flex text-right'>
-                                    <BiSearch className='mt-3 mr-3 hover:text-gray-600 cursor-pointer'></BiSearch>
-                                    <p className='text-md mr-3 mt-2'>{user?.email}</p>
+                                    {search ? (
+                                        <input type="text" name="search" className='mr-1 md:mr-3 my-2 w-14 md:w-40 rounded-sm bg-white text-gray-600 text-xs md:text-sm p-1 md:pl-2' placeholder='Search Movies' onChange={(e) => handleChange(e)} onKeyPress={(e) => handleKey(e)} />
+                                    ) : null}
+                                    <BiSearch className='mt-3 mr-3 hover:text-gray-600 cursor-pointer' onClick={() => setSearch(!search)}></BiSearch>
+                                    <p className='text-xs md:text-sm mr-3 mt-3 md:mt-2'>{user?.email}</p>
                                     <BiGift className='mt-3 mr-3 hover:text-gray-600 cursor-pointer'></BiGift>
                                     <BiBell className='mt-3 mr-3 hover:text-gray-600 cursor-pointer'></BiBell>
                     <               Icon icon='ic:round-logout' className='text-xl mt-3 cursor-pointer text-center block hover:text-gray-600' onClick={onLogout} />
