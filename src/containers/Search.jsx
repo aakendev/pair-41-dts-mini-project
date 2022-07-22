@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import axios from 'axios';
 
 const api_url = process.env.REACT_APP_API_IMDB
@@ -10,7 +10,12 @@ const url_img = 'https://image.tmdb.org/t/p/original/'
 
 const Search = () => {
     const { value } = useParams();
+    const navigate = useNavigate();
     const [list, setList] = useState([])
+
+    const handleClick = (id) => {
+        navigate('/detail/movie/'+id)
+    }
     
     useEffect(() => {
         const getData = async () => {
@@ -33,9 +38,9 @@ const Search = () => {
                         {list.map(item => 
                             <>
                                 {item.poster_path !== null ? (
-                                    <img src={url_img + item.poster_path} className="w-[10%] mr-3 mt-3" />
+                                    <img src={url_img + item.poster_path} className="w-[10%] mr-3 mt-3" alt="" onClick={() => handleClick(item.id)} />
                                 ) : (
-                                    <img src="https://i.pinimg.com/564x/53/6c/63/536c6323d439596e766f055498e775e4.jpg" className='w-[10%] mr-3 mt-3' />
+                                    <img src="https://i.pinimg.com/564x/53/6c/63/536c6323d439596e766f055498e775e4.jpg" alt="" className='w-[10%] mr-3 mt-3' />
                                 )}
                             </>
                         )}
